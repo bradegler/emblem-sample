@@ -51,7 +51,7 @@ pipeline {
             sh "jx step tag --version \$(cat VERSION)"
             sh "make build"
             sh "export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml"
-            sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
+            sh "jx step post build --image $DOCKER_REGISTRY/$OCIR_TENANCY/$ORG/$APP_NAME:\$(cat VERSION)"
           }
         }
       }
