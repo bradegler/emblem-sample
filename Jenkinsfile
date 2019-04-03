@@ -23,7 +23,7 @@ pipeline {
             checkout scm
             sh "make linux"
             sh "export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml"
-            sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
+            sh "jx step post build --image $DOCKER_REGISTRY/$OCIR_TENANCY/$ORG/$APP_NAME:$PREVIEW_VERSION"
           }
           dir('/home/jenkins/go/src/github.com/bradegler/emblem-sample/charts/preview') {
             sh "make preview"
