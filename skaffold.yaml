@@ -7,7 +7,7 @@ build:
     docker: {}
   tagPolicy:
     envTemplate:
-      template: '{{.DOCKER_REGISTRY}}/bradegler/emblem-sample:{{.VERSION}}'
+      template: '{{.DOCKER_REGISTRY}}/{{.OCIR_TENANCY}}/bradegler/emblem-sample:{{.VERSION}}'
   local: {}
 deploy:
   kubectl: {}
@@ -18,7 +18,7 @@ profiles:
     - docker: {}
     tagPolicy:
       envTemplate:
-        template: '{{.DOCKER_REGISTRY}}/bradegler/emblem-sample:{{.DIGEST_HEX}}'
+        template: '{{.DOCKER_REGISTRY}}/{{.OCIR_TENANCY}}/bradegler/emblem-sample:{{.DIGEST_HEX}}'
     local: {}
   deploy:
     helm:
@@ -26,5 +26,5 @@ profiles:
       - name: emblem-sample
         chartPath: charts/emblem-sample
         setValueTemplates:
-          image.repository: '{{.DOCKER_REGISTRY}}/bradegler/emblem-sample'
+          image.repository: '{{.DOCKER_REGISTRY}}/{{.OCIR_TENANCY}}/bradegler/emblem-sample'
           image.tag: '{{.DIGEST_HEX}}'
