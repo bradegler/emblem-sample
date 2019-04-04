@@ -65,9 +65,6 @@ pipeline {
           dir('/home/jenkins/go/src/github.com/bradegler/emblem-sample/charts/emblem-sample') {
             sh "jx step changelog --version v\$(cat ../../VERSION)"
 
-            // build the helm chart
-            sh "jx step helm build"
-
             // release the helm chart
             sh "jx step helm release"
 
